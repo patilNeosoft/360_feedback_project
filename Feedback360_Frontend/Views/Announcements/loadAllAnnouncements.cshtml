@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetAllAnnouncements>
+
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/BannerList.css" asp-append-version="true" />
+
+<div class="table-responsive">
+            <table class="table" id="tblAnnouncements">
+                <thead>
+                    <tr>
+                        <th>Announcement</th>
+                        <th>Bank</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                  
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="td-limit">
+                               @Html.DisplayFor(modelItem => item.Message)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Bank.BankName)
+                            </td>
+                                <td>@(item.IsActive ? "Active" : "In Active") </td>                         
+                            <td>
+                                <i class="fa fa-pencil fa-2x text-primary" onclick="loadAnnouncementForm(this,@item.AnnouncementId)" ></i>
+                            </td>          
+                            <td>
+                                <i class="fa fa-trash fa-2x text-danger" onclick="deleteAnnouncement(this,@item.AnnouncementId)"></i>                              
+                            </td>
+                           
+                        </tr>
+                    }
+                    
+                </tbody>
+            </table>
+
+        </div>

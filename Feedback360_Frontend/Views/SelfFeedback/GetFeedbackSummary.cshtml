@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.SelfFeedbackSummaryVM>
+
+@{
+    ViewData["Title"] = "GetFeedbackSummary";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/TableDesign.css" />
+    <link rel="stylesheet" href="~/css/GetFeedbackSummary.css" />
+</head>
+<div class="card">
+    <div class="card-body">
+        <a class="btn btn-info" asp-action="SelfFeedbackHomePage" class="float-left" role="button">Back</a>
+        <h4 class="card-title">Feedback Summary</h4>
+        <form asp-action="GetFeedbackSummary">
+            <label for="cars">Financial Year</label>
+            <select name="financialYear" id="fYear">
+                <option value="0">Select All</option>
+                @foreach (var item in ViewBag.FinancialYearList)
+                {
+                    <option value="@item.StartYear">@item.StartYear-@item.EndYear</option>
+                }
+                
+            </select>
+           </form>
+        <div id="getFeedbackSummaryList"></div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
+    <script src="~/js/Feedback.js"></script>
+}
+
+

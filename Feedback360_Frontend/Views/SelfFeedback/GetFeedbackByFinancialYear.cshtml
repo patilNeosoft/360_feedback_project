@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetFeedBackByUserIdVM>
+
+@{
+    ViewData["Title"] = "GetFeedbackByFinancialYear";
+        Layout = "~/Views/Shared/_UserLayout.cshtml";
+
+}
+<head>
+     <link rel="stylesheet" href="~/css/ViewSelfFeedback.css" />
+</head>
+<div class="card">
+    <div class="card-body">
+     <a class="btn btn-info" asp-action="GetFeedbackSummary" class="float-left" role="button">Back</a>
+     <br />
+     <br />
+     @if (Model.Count() < 1)
+        {
+            <div class="alert alert-info" role="alert">
+                No feedback form details found !
+            </div>
+        }
+        else
+        {
+            <h4 class="card-title">Feedback</h4>
+            <div class="card">
+                <div class="card-header">Feedback details</div>
+                <div class="card-body" id="card1">
+                    <div class="form-outline mb-4">
+                        <h5>Primary Role</h5>
+                        <h6 class="control-label">@ViewBag.rolename</h6>
+                    </div>
+                    <div class="form-outline mb-4">
+                        <h5>User Name</h5>
+                        <h6 class="control-label">@ViewBag.username</h6>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="table-responsive">
+                <div class="card">
+                    <div class="card-header">Behavioural Competencies</div>
+                    <div class="card-body" id="card2">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Score</th>
+                                    <th>Comment</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Question</td>
+                                        <td>@item.SelfScore</td>
+                                        <td>@item.SelfComment</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br />
+                <div class="card">
+                    <div class="card-header">Subjective Feedback</div>
+                    <div class="card-body" id="card3">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Question</td>
+                                        <td>@item.SubjectDescription</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

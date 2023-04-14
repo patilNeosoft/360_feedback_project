@@ -1,0 +1,28 @@
+﻿thead {
+    background-color: #545AA7;
+}
+
+table.dataTable {
+    box-shadow: #bbbbbb 0px 0px 5px 0px;
+}
+
+thead > tr,
+thead > tr > th {
+    background-color: transparent;
+    color: #fff;
+    font-weight: normal;
+    text-align: start;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom: 0px solid #111 !important;
+}
+
+.dataTables_filter {
+    text-align: left !important;
+}
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 8px 12px;
+    overflow: hidden;
+}

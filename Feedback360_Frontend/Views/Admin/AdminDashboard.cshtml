@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "AdminDashboard";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        @*<div class="col-md-12 grid-margin transparent">*@
+            <div class="row">
+                <div class="col-md-6 stretch-card transparent">
+                    <div class="card card-tale">
+                        <div class="card-body">
+                            <p class="mb-4"></p>
+                            <p class="fs-30 mb-4"><i class="bi bi-person-add fa-1x"></i> <a asp-action="UserRoles" style="text-decoration:none; color : white">User Roles</a></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  stretch-card transparent">
+                    <div class="card card-tale" id="card2">
+                        <div class="card-body">
+                            <p class="mb-4"></p>
+                            <p class="fs-30 mb-6"><i class="bi bi-megaphone fa-1x"></i> <a asp-controller="Announcements" asp-action="GetAllAnnouncements" style="text-decoration:none; color : white">Announcements</a></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @*</div>*@
+        @*<div class="col-md-12 grid-margin transparent">*@
+            <div class="row">
+                <div class="col-md-6  stretch-card transparent">
+                    <div class="card card-dark-blue">
+                        <div class="card-body">
+                            <p class="mb-4"></p>
+                            <p class="fs-30 mb-6"><i class="bi bi-images fa-1x"></i> <a asp-controller="Banner" asp-action="Banners" style="text-decoration:none; color : white">Configure Banner</a></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  stretch-card transparent">
+                    <div class="card" id="card4">
+                        <div class="card-body">
+                            <p class="mb-4"></p>
+                            <p class="fs-30 mb-6"><i class="bi bi-chat-quote fa-1x" style="color:white;"></i> <a asp-controller="AdminQuery" asp-action="GetAllQueriesAdmin" style="text-decoration:none; color : white">Query/Suggestions</a></p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @*</div>*@
+        @*<div class="col-md-12 grid-margin transparent">*@
+            <div class="row">
+                <div class="col-md-6  stretch-card transparent">
+                    <div class="card card-dark-blue">
+                        <div class="card-body">
+                            <p class="mb-4"></p>
+                            <p class="fs-30 mb-6"><i class="bi bi-person-fill-lock"></i> <a asp-controller="UserAuthority" asp-action="UserAuthority" style="text-decoration:none; color : white">Set Authority For Users</a></p>
+                            <p></p> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @*</div>*@
+
+    </div>
+</div>

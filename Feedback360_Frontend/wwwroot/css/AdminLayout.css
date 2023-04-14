@@ -1,0 +1,38 @@
+﻿html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.modal-header {
+    background-color: #662d91;
+    color: white;
+}
+
+.stretch-card > .card {
+    height: 150px;
+    border-radius:20px;
+}
+button.btn-close:hover {
+    background-color: white;
+}
+
+#card2{
+    background-color:steelblue;
+}
+#card4 {
+    background-color: cadetblue;
+}

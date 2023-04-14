@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetUsersByBankIdVM>
+
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="table-responsive">
+    <table class="table" id="UserAuthorityTbl">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Reporting Authority</th>
+                <th>Reviewing Authority</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReportingAuthority_FirstName) @Html.DisplayFor(modelItem => item.ReportingAuthority_LastName)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ReviewingAuthority_FirstName) @Html.DisplayFor(modelItem => item.ReviewingAuthority_LastName)
+
+                    </td>
+                    <td>
+                        <button type="button" class="rounded-pill" onclick="loadUserAuthorityForm(this,@item.UserId)"> Add </button>
+@*                        <button class="rounded-pill"> <span> <i class="fa-solid fa-plus-large"></i> mutton </span></button>
+*@@*                        <i class="bi bi-trash fa-2x" onclick="deleteQuestionnaire(this,@item.QuestionId)" style="color:red"></i>
+*@                    </td>
+
+                </tr>
+            }
+            @if(!Model.Any())
+            {
+                <tr>
+                    <td colspan="4">No Records Found</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@*<script src="~/js/UserAuthority/UserAuthorityTable.js">
+</script>*@
+

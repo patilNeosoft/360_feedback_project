@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetMyTeamVm>
+@{
+    ViewData["Title"] = "loadMyTeam";
+
+}
+<link rel="stylesheet" href="~/css/test.css" />
+
+<div class="container">
+    
+        <div class="container-fluid">
+            <div class="d-flex flex-row flex-nowrap">
+                @foreach (var item in Model)
+    {
+                <div class="card">
+                    <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDNubk28tIFP9TvWwSzfs3Ke14tj9entdh-A&usqp=CAU" alt="Card image">
+                    <div class="card-body">
+                        <p class="card-text">Some example text some example text.</p>
+                        <a href="#" class="btn btn-primary">See Profile</a>
+                    </div>
+                </div>
+                <br>
+                <br>
+                }
+            </div>
+        </div>
+    
+
+</div>
+
+        @section Scripts{
+        <partial name="_ValidationScriptsPartial" />
+        <script src="~/js/DepartmentTeam.js"></script>
+    }

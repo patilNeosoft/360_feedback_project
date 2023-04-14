@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetMyTeamVm>
+@{
+    ViewData["Title"] = "loadMyTeam";
+    
+}
+<head>
+    <link rel="stylesheet" href="~/css/TableDesign.css" />
+    <link rel="stylesheet" href="~/css/MyTeamBtn.css" />
+
+    <style>
+        label {
+            color: darkblue;
+        }
+    </style>
+</head>
+
+<div class="table-responsive">
+    <table class="table" id="getMyTeamTbl">
+        <thead>
+            <tr>
+                <th hidden>DeptTeamId</th>
+                <th hidden>User Id</th>
+                <th>User Name</th>
+                <th>Secondary Role</th>
+                <th>Team Joining Date</th>
+                <th>Add Feedback</th>
+       @if(ViewBag.isTeamLead != null ){
+                <th>Remove</th> 
+       }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td hidden>@item.DeptTeamId</td>
+                    <td hidden>@item.UserId</td>
+                        <td>@item.UserName</td>
+                        <td>@item.SRole</td>
+                        <td>@item.TeamJoiningDate.Value.ToShortDateString()</td>
+                        <td>
+                            @{
+                                DateTime selfJoiningDate = ViewBag.joiningdate;
+                                DateTime rowDate = item.TeamJoiningDate.Value.Date;
+                                DateTime greaterDate = DateTime.Now;
+                                DateTime smallerDate = DateTime.Now;
+                                if (selfJoiningDate > rowDate)
+                                {
+                                    greaterDate = selfJoiningDate;
+                                    smallerDate = rowDate;
+                                }
+                                else
+                                {
+                                    greaterDate = rowDate;
+                                    smallerDate = selfJoiningDate;
+                                }
+                                if ((greaterDate - smallerDate).Days >= 90)
+                                {
+                                    <button class="f btn">feedback</button>
+                                }
+                                else
+                                {
+                                    <button class="f btn" disabled>feedback</button>
+                                }
+                            }
+                        </td>
+
+                        @if (ViewBag.isTeamLead != null)
+                        {
+                        
+                            <td> 
+                                @if (ViewBag.TeamLeadId != item.UserId)
+                        {
+                                <i class="bi bi-trash fa-2x" onclick="removeTeamMember(this,@item.DeptTeamId)" style="color:red"></i>
+                            }
+                            else
+                            {
+                                <h6>--</h6>
+                            }
+                        </td>
+                    }
+                    
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@section Scripts{
+  
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/DepartmentTeam.js"></script>
+   
+}

@@ -1,0 +1,58 @@
+﻿@model Feedback360_Frontend.Models.UserQueryVm
+@{
+    ViewData["Title"] = "_UserQueryForm";
+}
+@{
+    Layout = null;
+}
+<head>
+ <partial name="_ValidationScriptsPartial" />
+ <script src="~/js/Query/UserQuery.js"></script>
+<style>
+    label {
+        color: darkblue;
+    }
+</style>
+</head>
+<div class="model-body">
+    <div class="outerBox" style="padding:12px;">
+        <form asp-action="UserQueryForm" data-ajax="true" data-ajax-method="POST"
+          data-ajax-failure="globalFunctions.onFailure"
+          data-ajax-success="onSaveSuccess" class="pt-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-outline mb-4" hidden>
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4" hidden>
+                <label asp-for="QueryId" class="control-label"></label>
+                <input asp-for="QueryId" class="form-control" />
+                <span asp-validation-for="QueryId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4" hidden>
+                <label asp-for="QueryStatus" class="control-label"></label>
+                <input asp-for="QueryStatus" value="0" class="form-control" />
+                <span asp-validation-for="QueryStatus" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label asp-for="QueryTitle" class="control-label">Query Title<span style="color:red">*</span></label>
+                <input asp-for="QueryTitle" class="form-control" />
+                <span asp-validation-for="QueryTitle" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label asp-for="Description" class="control-label">Description<span style="color:red">*</span></label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+}

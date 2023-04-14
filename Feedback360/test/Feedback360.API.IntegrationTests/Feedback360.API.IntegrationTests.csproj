@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+<ItemGroup>
+  <InternalsVisibleTo Include="Feedback360.API.IntegrationTests" />
+</ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="NWebsec.AspNetCore.Middleware" Version="3.0.0" />
+    <PackageReference Include="Shouldly" Version="4.0.3" />
+    <PackageReference Include="SweetAlert.Base" Version="1.1.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="3.1.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\API\Feedback360.Api\Feedback360.Api.csproj" />
+    <ProjectReference Include="..\..\src\Core\Feedback360.Application\Feedback360.Application.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Feedback360.Identity\Feedback360.Identity.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Feedback360.Infrastructure\Feedback360.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Infrastructure\Feedback360.Persistence\Feedback360.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,153 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetAllBannerVm>
+@{
+    ViewData["Title"] = "GetBannersList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/BannerList.css" asp-append-version="true" />
+
+
+@if (TempData["bannerAdded"] != null)
+{
+    <script>
+        $(document).ready(function() {
+            globalFunctions.showSuccessMessage("new banner added successfully!");
+        });
+    </script>
+
+}
+else if (TempData["bannerUpdated"] != null)
+{
+    <script>
+        $(document).ready(function() {
+            globalFunctions.showSuccessMessage("banner updated successfully!");
+        });
+    </script>
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align: center;">Banners List</h4>
+        <p class="card-description">
+            <a class="btn btn-info add-new" onclick="loadBannerForm(this)" style="color:white;"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Banner</a>
+        </p>
+        <div id="getAllBannerList"></div>
+        </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/Banner/Banner.js"></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @*
+<h1>Get BannersList</h1>
+
+<div class="container-lg">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-8"><h2>User Roles</h2></div>
+                    <div class="col-sm-4">
+                        <a class="btn btn-info add-new" role="button" id="bt" style="color:white;"><i class="fa fa-plus"></i>Add New</a>
+                    </div>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BannerImageName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BannerTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BannerImageUrl)
+                        </th>
+                        <th>
+                            <b>Edit</b>
+                        </th>
+
+                        <th>
+                            <b>Delete</b>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BannerImageName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BannerTitle)
+                            </td>
+                            <td>
+                                <img src="~/BannerImages/@item.BannerImageUrl" width="500" height="600">
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "UpdateBanner", new {id=item.BannerId})
+                            </td>
+                            <td>
+                                @Html.ActionLink("Delete", "DeleteBanner", new { id=item.BannerId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>*@
+    @*@section scripts{
+    <script>
+        $(document).ready(function() {
+            $("#bt").click(function() {
+                var data = {
+
+                    people: [
+                        { name: 'Some Guy'},
+                        { name: 'Some Girl'}
+                    ]
+                };
+                $.ajax('/Banner/Test/' + JSON.stringify(data.people), {
+                    method: 'post',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    //data: JSON.stringify(data),
+                    traditional: true,
+                    success: function(d) {
+                        //do stuff
+                    }
+                });
+            });
+        });
+    </script>
+
+}*@

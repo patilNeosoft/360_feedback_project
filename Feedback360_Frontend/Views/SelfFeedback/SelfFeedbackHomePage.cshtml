@@ -1,0 +1,147 @@
+﻿@model Feedback360_Frontend.Models.UserAuthorityMappingVM
+@{
+    ViewData["Title"] = "SelfFeedbackScroller";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/SelfFeedback.css" />
+    <link rel="stylesheet" href="~/css/ViewSelfFeedback.css" />
+     <link rel="stylesheet" href="~/css/TableDesign.css" />
+</head>
+<div class="card">
+    <h5 class="card-header">Self Feedback Dashboard</h5>
+
+    <div class="card-body">
+       <h4 class="card-title float-right">FY @Model.StartYear - @Model.EndYear
+        </h4>
+        <br />
+        <br />
+        <a role="button" class="btn btn-primary">Add Feedback</a>
+        <a role="button" asp-action="GetFeedbackSummary" class="btn btn-primary">View Summary</a>
+        <h5 class="float-right">Pending</h5>
+    </div>
+    <div class="container">
+
+        <ul class="cards">
+
+            <li class="card">
+                <div>
+                    <h5 class="card-link"><i class="bi bi-calendar-event"></i> Date</h5>
+                </div>
+                <div class="card-link-wrapper">
+                    @{
+                        string startDate = DateTime.Parse(@Model.StartDate).ToString("dd MMMM yyyy");
+                        string endDate = DateTime.Parse(@Model.EndDate).ToString("dd MMMM yyyy");
+
+                    }
+                    <h6 class="card-title"> @startDate - @endDate</h6>
+                </div>
+            </li>
+            <li class="card">
+                <div>
+                    <h5 class="card-link"><i class="bi bi-person-fill"></i> Primary Role</h5>
+                </div>
+                <div class="card-link-wrapper">
+                    <h6 class="card-title">@Model.PrimaryRole</h6>
+                </div>
+            </li>
+            <li class="card">
+                <div>
+                    <h5 class="card-link"><i class="bi bi-building-fill"></i> Organization</h5>
+                    <div class="card-link-wrapper">
+                        <h6 class="card-title">@Model.Organization</h6>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div>
+                    <h5 class="card-link"><i class="bi bi-person-check-fill"></i> Reporting Authority</h5>
+                    <div class="card-link-wrapper">
+                        <h6 class="card-title">@Model.ReportingAuthority</h6>
+                    </div>
+                </div>
+            </li>
+            <li class="card">
+                <div>
+                    <h5 class="card-link"><i class="bi bi-person-fill-check"></i> Reviewing Authority</h5>
+                    <div class="card-link-wrapper">
+                        <h6 class="card-title">@Model.ReviewingAuthority</h6>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card" id="card-viewform-outer">
+        <div class="card-body">
+            <h4 class="card-title">Self Feedback Details</h4>
+            <div class="card" id="card-viewform-inner">
+                <div class="card-body">
+                    @if (ViewBag.SelfFeedbackData.Count > 0)
+                    {
+                        <div class="form-outline mb-4">
+                            <h5>Primary Role</h5>
+                            <h6 class="control-label">@ViewBag.rolename</h6>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <h5>User Name</h5>
+                            <h6 class="control-label">@ViewBag.username</h6>
+                        </div>
+                        <br />
+
+                        <form>
+                            <div class="form-row">
+                                <h3 style="text-align:center">Behavioural Feedback</h3>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Question</th>
+                                            <th>Score</th>
+                                            <th>Comment</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.SelfFeedbackData)
+                                        {
+                                            <tr>
+                                                <td>@item.Question</td>
+                                                <td>@item.SelfScore</td>
+                                                <td>@item.SelfComment</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <br />
+                                <h3 style="text-align:center">Subjective Feedback</h3>
+
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Question</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.SelfFeedbackData)
+                                        {
+                                            <tr>
+                                                <td>@item.Question</td>
+                                                <td>@item.SubjectDescription</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info" role="alert">
+                            No feedback form details found for current year!
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

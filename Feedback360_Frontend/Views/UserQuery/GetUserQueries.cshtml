@@ -1,0 +1,28 @@
+﻿@using Feedback360.Infrastructure.EncryptDecrypt
+@using Microsoft.AspNetCore.DataProtection
+@model IEnumerable<Feedback360_Frontend.Models.CommentVm>
+@{
+    ViewData["Title"] = "GetUserQueries";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/UserQueries.css" />
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Queries List</h4>
+        <p class="card-description">
+            <a class="btn btn-info add-new" onclick="loadUserQueryForm(this)" style="color:white;"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Query</a>
+        </p>
+         <div id="getAllUserQueries"></div>
+            </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/Query/UserQuery.js"></script>
+    <script src="~/js/site.js"></script>
+}
+
+
+

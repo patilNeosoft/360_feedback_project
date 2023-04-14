@@ -1,0 +1,215 @@
+﻿body {
+    color: #404E67;
+    background: #F5F7FA;
+    font-family: 'Open Sans', sans - serif;
+}
+
+
+.table-wrapper {
+    width: 700px;
+    margin: 30px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+
+.table-title {
+    padding-bottom: 10px;
+    margin: 0 0 10px;
+}
+
+    .table-title h2 {
+        margin: 6px 0 0;
+        font-size: 22px;
+    }
+
+    .table-title.add - new {
+        float: right;
+        height: 30px;
+        font-weight: bold;
+        font-size: 12px;
+        text-shadow: none;
+        min-width: 100px;
+        border-radius: 50px;
+        line-height: 13px;
+    }
+
+        .table-title.add-new i {
+            margin-right: 4px;
+        }
+
+table.table {
+    table-layout: fixed;
+}
+
+    table.table tr th, table.table tr td {
+        border-color: #e9e9e9;
+    }
+
+    table.table th i {
+        font-size: 13px;
+        margin: 0 5px;
+        cursor: pointer;
+    }
+
+    table.table th:last-child {
+        width: 100px;
+    }
+
+    table.table td a {
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 5px;
+        min-width: 24px;
+    }
+
+        table.table td a.add {
+            color: #27C46B;
+        }
+
+        table.table td a.edit {
+            color: #FFC107;
+        }
+
+        table.table td a.delete {
+            color: #E34724;
+        }
+
+    table.table td i {
+        font-size: 19px;
+    }
+
+    table.table td a.add i {
+        font-size: 24px;
+        margin-right: -1px;
+        position: relative;
+        top: 3px;
+    }
+
+
+    table.table.form-control {
+        height: 32px;
+        line-height: 32px;
+        box-shadow: none;
+        border-radius: 2px;
+    }
+
+        table.table.form-control.error {
+            border-color: #f50000;
+        }
+
+    table.table td.add {
+        display: none;
+    }
+
+a {
+    color: white;
+}
+#deleteAll{
+    width:60px;
+    height:30px;
+    font-size:10px;
+}
+
+#adminComment, #userComment {
+    color: black;
+}
+
+#commentInputHeader {
+    text-align: center;
+}
+
+#commentInfoCard, #enterCommentCard {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+#enterCommentCard {
+    width: 100%;
+}
+
+#commentInfoHeading {
+    color: white;
+    background-color: rebeccapurple;
+}
+
+#sendCommentCard {
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+#commentForm {
+    border-color: #262250;
+}
+
+#chatSection {
+    height: 400px;
+    overflow-y: scroll;
+}
+
+#commentInputHeader {
+    text-align: center;
+}
+
+.Card {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+element.style {
+}
+
+.card-header:first-child {
+    border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+    background-color: lightslategray;
+}
+
+.p-3 {
+    padding: 1rem !important;
+}
+
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0,0,0,.03);
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    background-color: #262250;
+}
+
+.p-3 {
+    padding: 1rem !important;
+}
+
+.justify-content-between {
+    justify-content: space-between !important;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 3rem;
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+    margin: 20px 20px;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #ffffff;
+    border-color: #462d30;
+}
+.trSelect{
+    width:20px;
+}
+
+
+
+
+

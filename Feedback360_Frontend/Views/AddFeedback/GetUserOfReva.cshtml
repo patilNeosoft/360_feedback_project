@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<Feedback360_Frontend.Models.GetRepaUserListVM>
+@{
+    ViewData["Title"] = "GetUserOfReva";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/RepaAndRevaUsers.css" asp-append-version="true" />
+
+<nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="UserDashboard" asp-controller="User" style="color:blue">User Dashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="_360Feedback" asp-controller="User" style="color:blue">360 Feedback HomePage</a></li>
+        <li class="breadcrumb-item active">Pending Feedback At Reviewing Authority </li>
+    </ol>
+</nav>
+
+<br />
+
+<div class="table-responsive">
+    <table class="table" id="RevaUserTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Employee Id</th>
+                <th>Year</th>
+                <th>View</th>
+                
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.StartYear - @item.EndYear</td>
+
+                    <td>
+                        @{
+
+                            var textBytes = System.Text.Encoding.UTF8.GetBytes(((item.UserFeedbackId) * (-99)).ToString());
+                            string feedbackIdEnc = System.Convert.ToBase64String(textBytes);
+                            //string queryIdEnc = EncryptionDecryption.EncryptString((item.queryId).ToString());
+
+                        }
+                        <button type="button" class="btn btn-info">@Html.ActionLink("View", "ViewRevaFeedback", new {id=feedbackIdEnc})</button>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
+
+

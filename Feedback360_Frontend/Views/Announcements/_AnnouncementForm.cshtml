@@ -1,0 +1,74 @@
+﻿@model Feedback360_Frontend.Models.AnnouncementsVm
+@{
+    Layout = null;
+}
+
+@{
+    string actionLink = "";
+}
+@{
+    if (TempData["edit"] != null)
+    {
+        actionLink = "UpdateAnnouncement";
+    }
+    else
+    {
+        actionLink = "CreateAnnouncement";
+    }
+}
+<head>
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/Announcements/Announcements.js"></script>
+<style>
+    #buttons {
+        display: inline-block;
+    }
+
+    #outerbox1 {
+        margin-top: -100px;
+    }
+
+    #outerbox2 {
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
+
+    label {
+        color: darkblue;
+    }
+</style>
+</head>
+<div class="model-body">
+    <div class="outerBox" style="padding:12px;">
+        <form asp-action="@actionLink" data-ajax="true" data-ajax-method="POST"
+          data-ajax-failure="globalFunctions.onFailure"
+          data-ajax-success="onSaveSuccess" class="pt-3">
+            <div>
+                <input type="number" hidden asp-for="AnnouncementId"/>
+            </div>
+
+            <div class="form-outline mb-2">
+                <label class="control-label">Announcement<span class="text-danger">&nbsp;*</span></label>
+                <textarea asp-for="Message" class="form-control" rows="5" cols="40"></textarea>
+                <span asp-validation-for="Message" class="text-danger" class="text-danger display-block"></span>
+            </div>
+
+            <div class="form-outline mb-2">
+                <label asp-for="BankId" class="control-label">Bank<span class="text-danger">&nbsp;*</span></label>
+                <select asp-for="BankId" class="form-control" asp-items="ViewBag.Banklist" >
+                    <option value="">--Select--Bank--</option>
+                </select>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="control-label checkbox-inline" for="Active">
+                  <input asp-for="IsActive" type="checkbox" class="form-check-input" id="Active"/>Active
+                </label>
+            </div>
+
+            <div class="modal-footer">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model Feedback360_Frontend.Models.RemovepermisionVM
+@{
+    ViewData["Title"] = "RemovePermissions";
+    Layout = null;
+}
+
+<div class="model-body">
+    <form asp-action="RemovePermissions" data-ajax="true" data-ajax-method="POST"
+          data-ajax-failure="globalFunctions.onFailure"
+          data-ajax-success="onSaveSuccess">
+        <div class="form-outline mb-4" style="font-size:20px;" hidden>
+            <input asp-for="RoleId" class="form-control" id="RoleId" />
+            <span class="text-danger"></span>
+        </div>
+        @foreach (var item in ViewBag.PermissionList1)
+        {
+            <div style="padding : 30px">
+                <span>
+                    <input type="checkbox" value="@item.Value" name="selectedPermissions1" checked class="form-check-input pemissionChk">
+                    <label style="font-size : 20px; margin-left: 10px" class="form-check-label">@item.Key</label><br>
+                </span>
+            </div>
+        }
+        <div class="form-group">
+            <button onclick="checkall()" style="margin-left : 200px" class="btn btn-warning">Remove</button>
+            <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/site.js"></script>
+}
+
+

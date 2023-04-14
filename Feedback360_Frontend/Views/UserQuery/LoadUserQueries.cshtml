@@ -1,0 +1,54 @@
+﻿@using Feedback360.Infrastructure.EncryptDecrypt
+@using Microsoft.AspNetCore.DataProtection
+@model IEnumerable<Feedback360_Frontend.Models.CommentVm>
+
+<link rel="stylesheet" href="~/css/UserQueries.css" />
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+
+<div class="table-responsive">
+            <table class="table" id="QueriesTable">
+                <thead>
+                    <tr>
+                        <th>Query Title</th>
+                        <th>Description</th>
+                        <th>Query Status</th>
+                        <th>View</th>
+                        <th>remove</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.allQueries)
+                    {
+                        <tr>
+                            <td>@item.queryTitle</td>
+                            <td>@item.description</td>
+
+                            @if (@item.queryStatus == true)
+                            {
+                                <td><span id="resolvedQueryStatusBtn">Resolved</span></td>
+                            }
+                            else
+                            {
+                                <td><span id="openQueryStatusBtn">Open</span></td>
+                            }
+                            <td>
+                                @{
+                                    
+                                    var textBytes = System.Text.Encoding.UTF8.GetBytes(((item.queryId)*(-99)).ToString());
+                                    string queryIdEnc =  System.Convert.ToBase64String(textBytes);
+                                    //string queryIdEnc = EncryptionDecryption.EncryptString((item.queryId).ToString());
+
+                                }
+                                <button type="button" class="btn btn-info">@Html.ActionLink("View", "ViewQueryDetails", new {id=queryIdEnc})</button>
+                            </td>
+                            <td>
+                                <i class="bi bi-trash fa-2x" onclick="deleteUserQuery(this,@item.queryId)" style="color:red"></i>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>

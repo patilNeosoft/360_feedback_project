@@ -1,0 +1,33 @@
+﻿@model Feedback360_Frontend.Models.RolePermissionVM
+@{
+    ViewData["Title"] = "SetPermissions";
+    Layout = null;
+}
+<div class="model-body">
+    <form asp-action="SetPermissions" data-ajax="true" data-ajax-method="POST"
+          data-ajax-failure="globalFunctions.onFailure"
+          data-ajax-success="onSaveSuccess">
+        <div class="form-outline mb-4" style="font-size:20px;" hidden>
+            <input asp-for="RoleId" class="form-control" id="RoleId" />
+            <span class="text-danger"></span>
+        </div>
+        @foreach (var item in ViewBag.PermissionList)
+        {
+            <div style="padding : 30px">
+                <span>
+                    <input type="checkbox" value="@item.Value" name="selectedPermissions" class="form-check-input">
+                    <label style="font-size : 20px; margin-left: 10px" class="form-check-label">@item.Key</label><br>
+                </span>
+            </div>
+        }
+        <div class="form-group">
+            <input type="submit" value="Set" style="margin-left : 200px" class="btn btn-success" />
+            <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script src="~/js/UserRole/UserRole.js"></script>
+}
+

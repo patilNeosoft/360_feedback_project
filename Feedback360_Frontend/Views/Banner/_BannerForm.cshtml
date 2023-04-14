@@ -1,0 +1,92 @@
+﻿@model Feedback360_Frontend.Models.BannerVm
+@{
+    ViewData["Title"] = "_BannerForm";
+}
+@{
+    Layout = null;
+}
+@{
+    string actionLink = "";
+}
+@{
+    if (TempData["editBanner"] != null)
+    {
+        actionLink = "UpdateBanner";
+    }
+    else
+    {
+        actionLink = "CreateBanner";
+    }
+}
+<head>    
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Banner/Banner.js"></script>
+<style>
+    label {
+        color: darkblue;
+    }
+</style>
+</head>
+
+<div class="model-body">
+    <div class="outerBox" style="padding:12px;">     
+        <form asp-action="@actionLink" class="pt-3" enctype="multipart/form-data" data-ajax-method="POST" data-ajax="true" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-outline mb-4" hidden>
+                <label asp-for="BannerId" class="control-label"></label>
+                <input asp-for="BannerId" class="form-control" />
+                <span asp-validation-for="BannerId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label asp-for="BannerTitle" class="control-label">Banner Title<span style="color:red">*</span></label>
+                <input asp-for="BannerTitle" class="form-control"  />
+                <span asp-validation-for="BannerTitle" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4">
+                <label asp-for="BannerImageName" class="control-label">Banner Image Name<span style="color:red">*</span></label>
+                <input asp-for="BannerImageName" class="form-control"/>
+                <span asp-validation-for="BannerImageName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BankId" class="control-label">Bank<span style="color:red">*</span></label>
+                <select asp-for="BankId" class="form-control" asp-items="ViewBag.Banklist">
+                    <option value="">--Select--Bank--</option>
+                </select>
+             <span asp-validation-for="BankId" class="text-danger"></span>
+            </div>
+            @if (actionLink == "CreateBanner")
+            {
+                <div class="form-group">
+                    <label asp-for="BannerImage" class="control-label">Select Image<span style="color:red">*</span></label>
+                    <input asp-for="BannerImage" class="form-control" type="file" accept="image/x-png,image/jpeg" id="formFile" oninput="FileValidation()" required />
+                    <div id="errorMessage" style="color:red"></div> 
+                </div>
+               
+            }
+            @if (actionLink == "UpdateBanner")
+            {
+                <div class="form-group">
+                    <label asp-for="BannerImage" class="control-label">Select Image</label>
+                    <input asp-for="BannerImage" class="form-control" type="file" accept="image/x-png,image/jpeg" id="formFile" oninput="FileValidation()" />
+                    <div id="errorMessage" style="color: #ff0000"></div> 
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="BannerImageUrl" class="control-label">Banner Image</label>
+                    <br />
+                    <input asp-for="BannerImageUrl" class="form-control"  hidden />
+                    <img src="~/BannerImages/@Model.BannerImageUrl" width="250" height="250">
+                </div>
+            }
+            <br />
+            <div class="modal-footer">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    
+}

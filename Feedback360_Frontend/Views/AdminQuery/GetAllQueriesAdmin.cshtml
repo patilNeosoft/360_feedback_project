@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.AdminQueryVM>
+
+@{
+    ViewData["Title"] = "GetAdminQueries";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/AdminQueries.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+
+
+@if (TempData["commentAdded"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            globalFunctions.showSuccessMessage("Comment added successfully!");
+        });
+    </script>
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align: center;">Query List</h4>
+        <span>Delete All  <input type="checkbox" id="myCheck"></span>
+        <button id="deleteAll" class="btn btn-danger">Delete</button>
+        
+        <div id="AdminQueryGrid"></div>
+       @* <div class="table-responsive">
+            <table class="table" id="queryTbl">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+              
+                        @foreach (var item in ViewBag.allAdminQueries)
+                        {
+                            <tr id="TblRow">
+
+
+                                <td> <input type="checkbox" data-checkid="@item.queryId" class="myRowCheck"></td>
+
+
+                                <td>
+                                    <div data-queryId="@item.queryId" class="trSelect">@item.queryTitle</div>
+
+                                </td>
+                                <td>
+                                    <div data-queryId="@item.queryId" class="trSelect">@item.description</div>
+
+                                </td>
+
+                                @if (@item.queryStatus == true)
+                                {
+                                    <td><div data-queryId="@item.queryId" class="trSelect">Resolved</div></td>
+                                }
+                                else
+                                {
+                                    <td><div data-queryId="@item.queryId" class="trSelect">Open</div></td>
+                                }
+
+                                <td>
+                                    <i class="bi bi-trash fa-4x" onclick="deleteQuery(this,@item.queryId)" style="color:red"></i>
+                                </td>
+
+
+                            </tr>
+                        }
+                    
+                </tbody>
+            </table>
+        </div>*@
+    </div>
+</div>
+
+
+@section Scripts{
+   
+    
+ @*   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js" defer></script>*@
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/AdminQuery/AdminQuery.js"></script>
+
+
+
+
+    @*   datatable *@
+
+    
+    
+  
+
+
+ 
+}
+

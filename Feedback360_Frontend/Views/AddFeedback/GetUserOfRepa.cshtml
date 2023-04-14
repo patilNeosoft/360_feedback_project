@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetRepaUserListVM>
+@{
+    ViewData["Title"] = "GetUserOfRepa";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/RepaAndRevaUsers.css" asp-append-version="true" />
+
+@*<a role="button" class="btn btn-primary" asp-action="_360Feedback" asp-controller="User" style="background-color:#00008b;margin-left:5px;margin-top:10px;">Back</a>*@
+<nav>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="UserDashboard" asp-controller="User" style="color:blue">UserDashboard</a></li>
+        <li class="breadcrumb-item"><a asp-action="_360Feedback" asp-controller="User" style="color:blue">360 Feedback HomePage</a></li>
+        <li class="breadcrumb-item active">Pending Feedback At Reportee </li>
+    </ol>
+</nav>
+<br />
+<div class="table-responsive">
+    <table class="table" id="RepaUserTable">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Employee Id</th>
+                <th>Year</th>
+                <th>View</th>
+                
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.EmployeeId</td>
+                    <td>@item.StartYear - @item.EndYear</td>
+                  
+                    <td>
+                        @{
+
+                            var textBytes = System.Text.Encoding.UTF8.GetBytes(((item.UserFeedbackId) * (-99)).ToString());
+                            string feedbackIdEnc = System.Convert.ToBase64String(textBytes);
+                            //string queryIdEnc = EncryptionDecryption.EncryptString((item.queryId).ToString());
+
+                        }
+                        <button type="button" class="btn btn-info">@Html.ActionLink("View", "ViewRepaFeedback", new {id=feedbackIdEnc})</button>
+                    </td>
+                   
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

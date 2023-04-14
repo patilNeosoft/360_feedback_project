@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.SelfFeedbackSummaryVM>
+
+
+    <link rel="stylesheet" href="~/css/TableDesign.css" />
+    <link rel="stylesheet" href="~/css/GetFeedbackSummary.css" />
+
+
+        <div class="table-responsive">
+            <table class="table" id="getFeedbackSummaryTbl">
+                <thead>
+                    <tr>
+                        <th>EmployeeId</th>
+                        <th>UserName</th>
+                        <th>Start Year</th>
+                        <th>End Year</th>
+                        <th>Status</th>
+                        <th>details</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.EmployeeId</td>
+                            <td>@item.UserName</td>
+                            <td>@item.StartYear</td>
+                            <td>@item.EndYear</td>
+
+                            @if (@item.Status == true)
+                            {
+                                <td><span>Completed</span></td>
+                            }
+                            else
+                            {
+                                <td><span>Pending</span></td>
+                            }
+                            <td>
+                               
+                                 @if(@item.Status == false){
+                                
+                                <button type="button" class="btn btn-info" disabled="disabled">@Html.ActionLink("Details", "GetFeedbackByFinancialYear", new {startYear= @item.StartYear,endYear = @item.EndYear})</button>
+                                 }
+                                 else{
+                                <button type="button" class="btn btn-info">@Html.ActionLink("Details", "GetFeedbackByFinancialYear", new {startYear= @item.StartYear,endYear = @item.EndYear})</button>
+
+                                 }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    

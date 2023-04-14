@@ -1,0 +1,62 @@
+﻿@model Feedback360_Frontend.Models.AnnouncementsVm
+
+@{
+    ViewData["Title"] = "CreateAnnouncement";
+}
+<style>
+    #buttons {
+        display: inline-block;
+    }
+
+    #outerbox1 {
+        margin-top: -100px;
+    }
+
+    #outerbox2 {
+        box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    }
+</style>  
+
+<div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0" id="outerbox1">
+                <div class="col-lg-4 mx-auto" id="outerbox2">
+                    <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                        <div class="brand-logo">
+                            <h4 style="color : darkblue"><b>Add Announcement</b></h4>
+                        </div>
+                        <form asp-action="CreateAnnouncement" class="pt-1">
+                            <div class="form-outline mb-4">
+                                <label class="control-label">Announcement</label><span style="color: Red">&nbsp;*</span>
+                                <textarea asp-for="Message" class="form-control" rows="5" cols="40"></textarea>
+                                <span asp-validation-for="Message" class="text-danger" style="color:Red;display:block;"></span>
+                            </div>
+                            <div>
+                                <label class="control-label">Select Bank</label><span style="color: Red">&nbsp;*</span>
+                                <select asp-for="BankId" class="form-control text-black">
+                                    <option value="">----Select----</option>
+                                    <option value="1">SBI</option>
+                                    <option value="2">Union Bank</option>
+                                </select>
+                                <span asp-validation-for="BankId" style="color:Red;display:block;"></span>
+                            </div>
+                            <div class="form-group form-check">
+                                <label class="form-check-label"></label>
+                                <input class="form-check-input" asp-for="IsActive" />
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </div>
+                            <br />
+                            <div class="form-group" id="buttons">
+                                <input type="submit" value="Create" class="btn btn-success" />
+                                <a class="btn btn-info" role="button" asp-action="GetAllAnnouncements">Back</a>
+                            </div>
+                            <div class="my-2 d-flex justify-content-between align-items-center">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

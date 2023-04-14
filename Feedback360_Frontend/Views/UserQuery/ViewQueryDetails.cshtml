@@ -1,0 +1,139 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.CommentVm>
+@{
+    ViewData["Title"] = "ViewQueryDetails";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/UserQueries.css" asp-append-version="true" />
+
+<section style="background-color: #eee;">
+    <a role="button" class="btn btn-primary" asp-action="UserQueries" asp-controller="UserQuery" style="background-color:#00008b;margin-left:20px;margin-top:10px;">Back</a>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                <div class="border">
+                    <div class="card" id="commentInfoCard">
+                        <div class="card-header" id="commentInfoHeading">Query Details</div>
+                        <div class="card-body">
+                            <div class="form-outline mb-4">
+                                <h5>Query Title</h5>
+                                <h6 class="control-label">@ViewBag.QueryData.queryTitle</h6>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <h5>Description</h5>
+                                <h6 class="control-label">@ViewBag.QueryData.description</h6>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <h5>Query Status</h5>
+                                @if (@ViewBag.QueryData.queryStatus == "True")
+                                {
+                                    <h6 class="control-label">Resolve</h6>
+                                }
+                                else
+                                {
+                                    <h6 class="control-label">Open</h6>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-7 col-xl-8">
+                <div class="card" id="sendCommentCard">
+                    <div class="card-header" id="commentInfoHeading">Comments</div>
+                    <br />
+                    <br />
+                    <ul class="list-unstyled">
+                        <div id="chatSection">
+                            @if (TempData["ViewQueryDetails"] != null)
+                            {
+                            <li>
+                                <div class="alert alert-danger" role="alert">
+                                        @TempData["ViewQueryDetails"]
+                                </div>
+                            </li>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    @if (item.RoleName == "Administrator")
+                                    {
+                                    <li class="d-flex justify-content-between mb-4">
+                                        <img src="~/images/UserIcon.png" alt="avatar"
+                                 class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60"> &nbsp;
+                                        <div class="card w-100">
+                                            <div class="card-header d-flex justify-content-between p-3">
+                                                <p class="fw-bold mb-0" id="adminComment">Admin</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="mb-0">
+                                                        @item.CommentText
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    }
+                                    else
+                                    {
+                                    <li class="d-flex justify-content-between mb-4">
+                                        <div class="card w-100">
+                                            <div class="card-header d-flex justify-content-between p-3">
+                                                <p class="fw-bold mb-0" id="userComment">@item.RoleName</p>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="mb-0">
+                                                        @item.CommentText
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <img src="~/images/UserIcon.png" alt="avatar"
+                                 class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+                                    </li>
+                                    }
+                                }
+                            }
+                </div>
+            </div>
+            <br />
+            <li class="d-flex justify-content-between mb-4">
+                <div class="card" id="enterCommentCard">
+                    <div class="card-body">
+                        <div class="card-header" id="commentInfoHeading">Enter Comment</div>
+
+                        <div class="form-outline">
+                            <form asp-action="SendUserComment" class="pt-3" enctype="multipart/form-data">
+
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-outline mb-4" hidden>
+                                    <label class="control-label"></label>
+                                    <input name="queryId" value="@ViewBag.QueryData.queryId" class="form-control" />
+                                </div>
+                                <div class="form-outline mb-4" id="commentForm">
+
+                                    <div class="card-body">
+                                            @if (@ViewBag.QueryData.queryStatus == "True")
+                                            {
+                                            <textarea class="form-control" id="textAreaExample2" rows="4" name="commentText" maxlength="300" disabled="disabled"></textarea>
+                                            }
+                                            else
+                                            {
+                                            <textarea class="form-control" id="textAreaExample2" rows="4" name="commentText" maxlength="300" required ></textarea>
+                                            }
+                                    </div>
+                                </div>
+                                <div style="text-align:center" class="form-outline mb-4">
+                                    <input type="submit" value="Save" class="btn btn-success" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </li>
+        </ul>
+    </div>
+    </div>
+    </div>
+</section>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "UserAuthority";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+
+<select class="form-control" asp-items="ViewBag.Banklist" id="BankId">
+    <option value="">--Select--Bank--Name</option>
+</select>
+<br />
+<div id="UserAuthorityGrid"></div>
+
+
+@section Scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/UserAuthority/UserAuthorityTable.js"></script>
+}

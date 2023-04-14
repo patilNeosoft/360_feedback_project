@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetEmployeeListByDepAndBankId>
+<link rel="stylesheet" href="~/css/TableDesign.css" />
+<div class="table-responsive">
+    <table class="table" id="getEmployeeListByDepAndBankIdTbl">
+        <thead>
+            <tr>
+                <th hidden>User Id</th>
+                <th>User Name</th>
+                <th>User Role</th>
+                <th>Department</th>
+                <th>Bank</th>
+                <th>Add</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td hidden>@item.UserId</td>
+                    <td>@item.UserName</td>
+                    <td>@item.UserRole</td>
+                    <td>@item.Department</td>
+                    <td>@item.Bank</td>
+                    <td>
+                        @if (ViewBag.isTeamLead != null && ViewBag.TeamLeadId != item.UserId)
+                        {
+
+                            <button type="button" class="btn btn-info" onclick="loadAddMemberForm(this,@item.UserId,'@item.UserName')">Add</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-info" onclick="loadAddMemberForm(this,@item.UserId,'@item.UserName')" disabled>Add</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

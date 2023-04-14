@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetAllAnnouncements>
+@{
+    ViewData["Title"] = "GetAllAnnouncements";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/BannerList.css" asp-append-version="true" />
+
+@if (TempData["announcementAdded"] != null)
+{
+    <script>
+        $(document).ready(function () {
+            globalFunctions.showSuccessMessage("Announcement added successfuly!");
+        });
+    </script>
+
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title text-center">Announcements</h4>
+        <p class="card-description">
+            <a class="btn btn-info add-new" onclick="loadAnnouncementForm(this)"  style="color:white;"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Announcement</a>
+        </p>
+         <div id="getAllAnnouncementList"></div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+   
+    <script src="~/js/Announcements/Announcements.js"></script>
+}

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.GetAllBannerVm>
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/BannerList.css" asp-append-version="true" />
+
+<div class="table-responsive">
+    <table class="table" id="BannerTbl">
+        <thead>
+            <tr>
+                <th>Bank</th>
+                <th>Banner Title</th>
+                <th>Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Bank.BankName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BannerTitle)
+                    </td>
+                    <td>
+
+                        <img src="~/BannerImages/@item.BannerImageUrl">
+                    </td>
+
+                    <td>
+                        <i class="bi bi-pencil-fill fa-2x" onclick="loadBannerForm(this,@item.BannerId)" style="color:purple"></i>
+                    </td>
+                    <td>
+                        <i class="bi bi-trash fa-2x" onclick="deleteBanner(this,@item.BannerId)" style="color:red"></i>
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

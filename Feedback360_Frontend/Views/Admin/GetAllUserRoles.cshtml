@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.UserRoleVm>
+@{
+    ViewData["Title"] = "GetAllUserRoles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/UserRoleList.css">
+@if(TempData["RemovePermissions"] != null)
+{
+    <script>
+            $(document).ready(function() {
+                globalFunctions.showErrorMessage("Permissions Removed !");
+            });
+    </script>
+}
+else if(TempData["SetPermissions"] != null)
+{
+    <script>
+            $(document).ready(function() {
+                globalFunctions.showSuccessMessage("Permissions set successfully!");
+            });
+    </script>
+}
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align: center;">User Roles</h4>
+        <p class="card-description">
+            <a class="btn btn-info add-new" onclick="loadUserRoleForm(this)" style="color:white;"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add Role</a>
+        </p>
+                <div id="getAllUserRoles"></div>
+        </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/UserRole/UserRole.js"></script>
+    
+}
+

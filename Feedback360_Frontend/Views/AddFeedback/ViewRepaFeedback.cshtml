@@ -1,0 +1,119 @@
+﻿@model List<Feedback360_Frontend.Models.FeedbackAnswerFormUIVM>
+
+@{
+    ViewData["Title"] = "ViewRepaFeedback";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+
+<form asp-action="ViewRepaFeedback" method="post" class="pt-3" enctype="multipart/form-data">
+
+    <div class="container">
+        <div style="background-color:white;" class="p-3 mb-3">
+            <h3 style="color:#00008b;">Subjective Form</h3>
+            <hr />
+            <div class="row">
+                <div class="col-6" style="font-size:22px;">Questions</div>
+                <div class="col-6" style="font-size:22px;">Description</div>
+            </div>
+            <br />
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="row">
+                    <div class="col-6">
+                      
+                        <input asp-for="@Model[i].UserId" value="@Model[i].UserId" hidden></input>
+                        <input asp-for="@Model[i].BankId" value="@Model[i].BankId" hidden></input>
+
+                        <input asp-for="@Model[i].FeedbackId" value="@Model[i].FeedbackId" hidden></input>
+                        <input asp-for="@Model[i].SelfCommentDate" value="@Model[i].SelfCommentDate" type="datetime" hidden></input>
+                        <input asp-for="@Model[i].QuestionId" value="@Model[i].QuestionId" hidden></input>
+
+                        @Model[i].Question
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-outline mb-4">
+
+                            <textarea asp-for="@Model[i].SubjectDescription" value="@Model[i].SubjectDescription" class="form-control" rows="3" readonly></textarea>
+                            <span asp-validation-for="@Model[i].SubjectDescription" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+        <div class="p-3" style="background-color:#fff">
+            <h3 style="color:#00008b;">Behavioural Form</h3>
+            @for (int i = 0; i < Model.Count; i++)
+            {
+
+                <div style="border:1px solid #B2B2B2" class="card  mb-3 p-3">
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            Question
+                        </div>
+                        <div class="col-6">
+                            <input asp-for="@Model[i].QuestionId" value="@Model[i].QuestionId" hidden></input>
+                            @Model[i].Question
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            Score
+                        </div>
+                        <div class="col-6">
+                            <select asp-for="@Model[i].SelfScore" class="form-control" >
+                             <option value="@Model[i].SelfScore">@Model[i].SelfScore</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            Comment
+                        </div>
+                        <div class="col-6">
+                            <textarea asp-for="@Model[i].SelfComment" value="@Model[i].SelfComment" class="form-control" rows="3" readonly></textarea>
+                            <span asp-validation-for="@Model[i].SelfComment" class="text-danger"></span>
+                            
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            Reportee Score
+                        </div>
+                        <div class="col-6">
+                            <select asp-for="@Model[i].RepaScore" class="form-control form-select">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-6">
+                            Reportee Comment
+                        </div>
+                        <div class="col-6">
+                            <textarea asp-for="@Model[i].RepaComment" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="@Model[i].RepaComment" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            }
+
+        </div>
+        <br />
+        <input type="submit" value="Save" style=" margin-left:50%;padding:10px;" class="btn btn-success" />
+    </div>
+
+</form>

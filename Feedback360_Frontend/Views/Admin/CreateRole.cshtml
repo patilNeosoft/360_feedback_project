@@ -1,0 +1,13 @@
+﻿@model Feedback360_Frontend.Models.UserRoleVm
+<form class="pt-3">
+    <div class="form-outline mb-4" style="font-size:20px;">
+        <label class="control-label"><b>User Role Name</b></label>
+        <input asp-for="RoleName" class="form-control" />
+        <span asp-validation-for="RoleName" class="text-danger"></span>
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="IsActive" type="checkbox" class="form-check-input" style="font-size:20px" id="Active" />
+        <label class="form-check-label" style="margin-left:5px;font-size:18px;"><b>Active</b></label>
+        <span asp-validation-for="IsActive" class="text-danger"></span>
+    </div>
+</form>

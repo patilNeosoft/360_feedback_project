@@ -1,0 +1,25 @@
+﻿@model Feedback360_Frontend.Models.FinancialYearVm
+
+@{
+    ViewData["Title"] = "DepartmentTeamHomePage";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+<head>
+    <link rel="stylesheet" href="~/css/TableDesign.css" />
+</head>
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align: center;">Create Team</h4>
+        <p class="card-description">
+                   <h4 class="card-title float-right">FY @Model.StartYear - @Model.EndYear</h4>
+            <a class="btn btn-info add-new" asp-action="MyTeamHomePage" style="color:white;"><i class="bi bi-microsoft-teams"></i> My Team</a>
+        </p>
+        <div id="AvailableMembersList"></div>
+    </div>
+</div>
+@section Scripts{
+        <script src="~/js/site.js"></script>
+     <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/js/DepartmentTeam.js"></script>
+}

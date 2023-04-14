@@ -1,0 +1,46 @@
+﻿@model Feedback360_Frontend.Models.UserRoleVm
+@{
+    Layout = null;
+}
+
+@{
+    string actionLink = "";
+}
+<head>
+<link rel="stylesheet" href="~/css/UserRole.css">
+<partial name="_ValidationScriptsPartial" />
+<script src="~/js/UserRole/UserRole.js"></script>
+</head>
+@{
+    if (TempData["edit"] != null)
+    {
+        actionLink = "UpdateUserRole";
+    }
+    else
+    {
+        actionLink = "CreateUserRole";
+    }
+}
+<div class="model-body">
+    <div class="outerBox" style="padding:12px;">
+        <form asp-action="@actionLink" data-ajax="true" data-ajax-method="POST"
+          data-ajax-failure="globalFunctions.onFailure"
+          data-ajax-success="onSaveSuccess" class="pt-3">
+            @Html.HiddenFor(e=>e.RoleId)
+            <div class="form-outline mb-4" style="font-size:20px;">
+                <label class="control-label"><b>User Role Name</b><span class="text-danger">*</span></label>
+                <input asp-for="RoleName" class="form-control" id="RoleName" onkeyup="checkRoleName()" type="text"/>
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <input asp-for="IsActive" type="checkbox" class="form-check-input"  style="font-size:20px" />
+                <label class="form-check-label" style="font-size:18px;"><b>Active</b></label>
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

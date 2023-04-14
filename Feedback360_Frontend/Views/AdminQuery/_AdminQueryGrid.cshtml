@@ -1,0 +1,55 @@
+﻿<link rel="stylesheet" href="~/css/AdminQueries.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+
+<div class="table-responsive">
+    <table class="table" id="queryTbl">
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewBag.allAdminQueries)
+            {
+                <tr id="TblRow">
+
+
+                    <td> <input type="checkbox" data-checkid="@item.queryId" class="myRowCheck"></td>
+
+
+                    <td>
+                        <div data-queryId="@item.queryId" class="trSelect">@item.queryTitle</div>
+
+                    </td>
+                    <td>
+                        <div data-queryId="@item.queryId" class="trSelect">@item.description</div>
+
+                    </td>
+
+                    @if (@item.queryStatus == true)
+                    {
+                        <td><div data-queryId="@item.queryId" class="trSelect">Resolved</div></td>
+                    }
+                    else
+                    {
+                        <td><div data-queryId="@item.queryId" class="trSelect">Open</div></td>
+                    }
+
+                    <td>
+                        <i class="bi bi-trash fa-4x" onclick="deleteQuery(this,@item.queryId)" style="color:red"></i>
+                    </td>
+
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+

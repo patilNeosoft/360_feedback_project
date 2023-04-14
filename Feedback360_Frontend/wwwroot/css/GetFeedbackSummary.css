@@ -1,0 +1,11 @@
+﻿#btn-filter {
+    padding: 0.1rem 0.75rem;
+    height: 28px;
+}
+btn btn-info{
+    color:white;
+}
+a,a:hover{
+    color:white;
+    text-decoration:none;
+}

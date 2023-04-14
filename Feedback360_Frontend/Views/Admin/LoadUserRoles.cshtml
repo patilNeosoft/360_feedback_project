@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Feedback360_Frontend.Models.UserRoleVm>
+<link rel="stylesheet" href="~/css/TableDesign.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/UserRoleList.css">
+
+<div class="table-responsive">
+            <table class="table" id="UserTbl">
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>Set Permissions</th>
+                        <th>Remove Permissions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.allRoles)
+                    {
+                        <tr>
+                            <td>@item.roleName</td>
+
+                            @if (@item.isActive == true)
+                            {
+                                <td>Active</td>
+                            }
+                            else
+                            {
+                                <td>InActive</td>
+                            }
+                            <td>
+                                <i class="bi bi-pencil-fill fa-2x" onclick="loadUserRoleForm(this,@item.roleId)" style="color:purple"></i>
+                            </td>
+                            <td>
+                                <i class="bi bi-trash fa-2x" onclick="deleteUserRole(this,@item.roleId)" style="color:red"></i>
+                            </td>
+
+                            <td>
+                                <button class="btn btn-warning" onclick="setpermission(this,@item.roleId)">Set </button>
+                          
+                            </td>
+                            <td>
+                                  <button class="btn btn-danger" onclick="removepermission(this,@item.roleId)">Remove </button>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    

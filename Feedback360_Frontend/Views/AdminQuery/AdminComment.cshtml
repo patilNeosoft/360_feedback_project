@@ -1,0 +1,40 @@
+﻿@*@model Feedback360_Frontend.Models.AdminCommentVM
+@{
+    ViewData["Title"] = "_AdminCommentForm";
+}
+@{
+    Layout = null;
+}
+<style>
+    label {
+        color: black;
+    }
+</style>
+<div class="model-body">
+    <div class="outerBox" style="padding:12px;">
+        <form asp-action="AdminComment" class="pt-3">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-outline mb-4" hidden>
+                <label asp-for="QueryId" class="control-label"></label>
+                <input asp-for="QueryId" class="form-control" />
+                <span asp-validation-for="QueryId" class="text-danger"></span>
+            </div>
+            <div class="form-outline mb-4" >
+                <label class="control-label">Comment Text<span style="color:red">*</span></label>
+                <input type="text" asp-for="CommentDescription" class="form-control" required />
+                <span asp-validation-for="CommentDescription" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <a class="btn btn-info" role="button" data-bs-dismiss="modal">Cancel</a>
+                <input type="submit" value="Save" class="btn btn-success" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/AdminQuery/AdminQuery.js"></script>
+}
+*@
